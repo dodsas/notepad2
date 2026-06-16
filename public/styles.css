@@ -1,0 +1,368 @@
+:root {
+  --bg: #f6f6f7;
+  --panel: #ffffff;
+  --border: #e4e4e7;
+  --text: #18181b;
+  --muted: #71717a;
+  --accent: #2dbe60;
+  --accent-dark: #25a050;
+  --sidebar-bg: #2f3033;
+  --sidebar-text: #d4d4d8;
+  --hover: #f0f0f1;
+  --selected: #e7f6ec;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic",
+    Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ---------- 로그인 ---------- */
+.login-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2dbe60 0%, #1f8f48 100%);
+}
+.login-box {
+  background: #fff;
+  padding: 40px 36px;
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  width: 320px;
+  text-align: center;
+}
+.login-box h1 {
+  margin: 0 0 4px;
+  font-size: 24px;
+}
+.login-sub {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 22px;
+}
+.login-box input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+  margin-bottom: 14px;
+}
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.login-box button:hover {
+  background: var(--accent-dark);
+}
+.login-error {
+  color: #dc2626;
+  font-size: 13px;
+  margin-top: 10px;
+  min-height: 18px;
+}
+
+/* ---------- 레이아웃 ---------- */
+.app {
+  display: grid;
+  grid-template-columns: 230px 320px 1fr;
+  height: 100vh;
+}
+
+/* ---------- 사이드바 ---------- */
+.sidebar {
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.sidebar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 16px 10px;
+}
+.logo {
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+}
+.nav {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 8px;
+}
+.nav-item {
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--sidebar-text);
+  text-decoration: none;
+}
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.nav-item[data-active] {
+  background: var(--accent);
+  color: #fff;
+}
+.nb-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 16px 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #8a8a90;
+}
+.notebook-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 8px 16px;
+}
+.notebook-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.notebook-list li:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.notebook-list li[data-active] {
+  background: var(--accent);
+  color: #fff;
+}
+.notebook-list .nb-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.notebook-list .nb-count {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-left: 6px;
+}
+.nb-actions {
+  display: none;
+  gap: 2px;
+}
+.notebook-list li:hover .nb-actions {
+  display: flex;
+}
+.nb-actions button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0 3px;
+  opacity: 0.8;
+}
+
+/* ---------- 노트 목록 ---------- */
+.list-pane {
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.list-head {
+  display: flex;
+  gap: 8px;
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.list-head input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+}
+.primary-btn {
+  white-space: nowrap;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 0 12px;
+  cursor: pointer;
+}
+.primary-btn:hover {
+  background: var(--accent-dark);
+}
+.list-title {
+  padding: 12px 16px 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.note-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+.note-list li {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.note-list li:hover {
+  background: var(--hover);
+}
+.note-list li[data-active] {
+  background: var(--selected);
+  border-left: 3px solid var(--accent);
+  padding-left: 13px;
+}
+.note-list .n-title {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.note-list .n-snippet {
+  font-size: 13px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.note-list .n-date {
+  font-size: 11px;
+  color: #a1a1aa;
+  margin-top: 6px;
+}
+.note-list .pin {
+  color: var(--accent);
+}
+.empty-msg {
+  padding: 30px 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ---------- 에디터 ---------- */
+.editor-pane {
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.editor-empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+.editor-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.editor-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.title-input {
+  flex: 1;
+  border: none;
+  font-size: 22px;
+  font-weight: 700;
+  outline: none;
+}
+.editor-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nb-select {
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 13px;
+  max-width: 140px;
+}
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  color: inherit;
+}
+.icon-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+.icon-btn.danger:hover {
+  background: #fee2e2;
+}
+.icon-btn.active {
+  background: var(--selected);
+}
+#editor {
+  flex: 1;
+  overflow-y: auto;
+  font-size: 15px;
+}
+.ql-container {
+  border: none !important;
+  font-size: 15px;
+}
+.ql-toolbar {
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  border-color: var(--border) !important;
+}
+.save-status {
+  padding: 6px 18px;
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  min-height: 28px;
+}
